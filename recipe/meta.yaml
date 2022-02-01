@@ -19,7 +19,7 @@ source:
     - 0005-Fix-destination-directory.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('libhwy', max_pin='x.x') }}
 
