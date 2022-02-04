@@ -15,11 +15,11 @@ source:
     - 0003-Provide-individual-toggles-for-build-options.patch
     # https://github.com/google/highway/pull/526
     - 0004-Fix-exporting-symbols-between-contrib-and-main.patch
-    # https://github.com/google/highway/pull/527
+    # https://github.com/google/highway/pull/536
     - 0005-Fix-destination-directory.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('libhwy', max_pin='x.x') }}
 
