@@ -21,8 +21,6 @@ requirements:
     - pkg-config            # [unix]
     - make                  # [unix]
     - ninja                 # [win]
-  host:
-    - root                  # [linux]
 
 test:
   commands:
