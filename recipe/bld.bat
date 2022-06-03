@@ -13,8 +13,5 @@ cmake                                           ^
     ..
 if errorlevel 1 exit 1
 
-cmake --build .
-if errorlevel 1 exit 1
-
-cmake --install .
+ninja install -j1
 if errorlevel 1 exit 1
