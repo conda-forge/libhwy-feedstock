@@ -1,5 +1,5 @@
 {% set name = "libhwy" %}
-{% set version = "0.15.0" %}
+{% set version = "0.17.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,19 +7,10 @@ package:
 
 source:
   url: https://github.com/google/highway/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 4bbd4439eae08cf038f1c5cc5d9ebc6a1a50f2c610c13a1483adccacfa24c150
-  patches:
-    # Remove this patch in the next versionc
-    - 0002-Build-as-shared.patch
-    # https://github.com/google/highway/commit/2251ffe4b8993b6988886c5867b37e42f805988a
-    - 0003-Provide-individual-toggles-for-build-options.patch
-    # https://github.com/google/highway/pull/526
-    - 0004-Fix-exporting-symbols-between-contrib-and-main.patch
-    # https://github.com/google/highway/pull/536
-    - 0005-Fix-destination-directory.patch
+  sha256: 25158fd5c090b70ecea47fc246c860d150f07f801d2434e1e51ec14a6c15822c
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage('libhwy', max_pin='x.x') }}
 
