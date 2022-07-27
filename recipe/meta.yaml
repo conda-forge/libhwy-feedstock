@@ -1,5 +1,5 @@
 {% set name = "libhwy" %}
-{% set version = "0.17.0" %}
+{% set version = "1.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/google/highway/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 25158fd5c090b70ecea47fc246c860d150f07f801d2434e1e51ec14a6c15822c
+  sha256: ab4f5f864932268356f9f6aa86f612fa4430a7db3c8de0391076750197e876b8
 
 build:
   number: 0
