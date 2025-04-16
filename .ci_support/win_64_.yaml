@@ -4,5 +4,7 @@ channel_targets:
 - conda-forge main
 cxx_compiler:
 - vs2019
+libhwy:
+- '1.1'
 target_platform:
 - win-64
