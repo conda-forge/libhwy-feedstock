@@ -19,6 +19,7 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
     - cmake
     - pkg-config            # [unix]
     - make                  # [unix]
