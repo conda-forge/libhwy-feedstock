@@ -1,5 +1,5 @@
 {% set name = "libhwy" %}
-{% set version = "1.1.0" %}
+{% set version = "1.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,8 +7,11 @@ package:
 
 source:
   url: https://github.com/google/highway/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 354a8b4539b588e70b98ec70844273e3f2741302c4c377bcc4e81b3d1866f7c9
-
+  sha256: 7e0be78b8318e8bdbf6fa545d2ecb4c90f947df03f7aadc42c1967f019e63343
+  patches:
+    - patches/missing_export.patch
+    - patches/macos_broken_sve.patch
+  
 build:
   number: 0
   run_exports:
@@ -17,6 +20,7 @@ build:
 requirements:
   build:
     - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
     - cmake
     - pkg-config            # [unix]
     - make                  # [unix]
@@ -46,3 +50,4 @@ about:
 extra:
   recipe-maintainers:
     - hmaarrfk
+    - adriendelsalle
