@@ -1,10 +1,4 @@
-c_compiler:    # [win]
-- vs2019       # [win]
-cxx_compiler:  # [win]
-- vs2019       # [win]
-
-
-# It seems that there is a build error with GCC 11 and 12
+# It seems that there is a build error with GCC 11, 12, 13, 14 and 15 on ppc64le
 # https://github.com/google/highway/issues/1570
 # https://github.com/google/highway/commit/213fd6a06b290c4ed9cf4d5a26fdfc32e8a47aa8
 # We are hitting an internal compiler error ....

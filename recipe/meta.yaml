@@ -9,7 +9,7 @@ source:
   sha256: 07b3c1ba2c1096878a85a31a5b9b3757427af963b1141ca904db2f9f4afe0bc2
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('libhwy', max_pin='x.x') }}
 
@@ -19,8 +19,7 @@ requirements:
     - {{ stdlib('c') }}
     - cmake
     - pkg-config            # [unix]
-    - make                  # [unix]
-    - ninja                 # [win]
+    - ninja
 
 test:
   commands:
@@ -38,9 +37,10 @@ test:
 
 about:
   home: https://github.com/google/highway
-  license: Apache-2.0
-  license_family: Apache
-  license_file: LICENSE
+  license: Apache-2.0 OR BSD-3-Clause
+  license_file:
+    - LICENSE
+    - LICENSE-BSD3
   summary: Efficient and performance-portable vector software
 
 extra:

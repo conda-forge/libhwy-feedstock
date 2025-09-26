@@ -5,7 +5,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/libhwy-feedstoc
 
 Home: https://github.com/google/highway
 
-Package license: Apache-2.0
+Package license: Apache-2.0 OR BSD-3-Clause
 
 Summary: Efficient and performance-portable vector software
 
