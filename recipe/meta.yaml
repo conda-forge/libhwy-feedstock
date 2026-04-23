@@ -38,9 +38,7 @@ test:
 about:
   home: https://github.com/google/highway
   license: Apache-2.0 OR BSD-3-Clause
-  license_file:
-    - LICENSE
-    - LICENSE-BSD3
+  license_file: LICENSE
   summary: Efficient and performance-portable vector software
 
 extra:
