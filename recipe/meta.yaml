@@ -9,7 +9,7 @@ source:
   sha256: e72241ac9524bb653ae52ced768b508045d4438726a303f10181a38f764a453c
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('libhwy', max_pin='x.x') }}
 
