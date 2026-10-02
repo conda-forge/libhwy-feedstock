@@ -1,0 +1,58 @@
+From 11732eb2a8df6aba1e58d61320dd8bf9a658ef74 Mon Sep 17 00:00:00 2001
+From: Jan Wassenberg <janwas@google.com>
+Date: Mon, 6 Jul 2026 15:26:04 -0700
+Subject: [PATCH] add missing DLLEXPORT, fixes #3181, thanks @stefson
+
+PiperOrigin-RevId: 943524867
+---
+ hwy/stats.cc | 4 ++--
+ hwy/stats.h  | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/hwy/stats.cc b/hwy/stats.cc
+index dead277e..042b17c4 100644
+--- a/hwy/stats.cc
++++ b/hwy/stats.cc
+@@ -24,7 +24,7 @@
+ 
+ namespace hwy {
+ 
+-void Stats::Assimilate(const Stats& other) {
++HWY_DLLEXPORT void Stats::Assimilate(const Stats& other) {
+   const int64_t total_n = n_ + other.n_;
+   if (total_n == 0) return;  // Nothing to do; prevents div by zero.
+ 
+@@ -68,7 +68,7 @@ void Stats::Assimilate(const Stats& other) {
+   n_ = total_n;
+ }
+ 
+-std::string Stats::ToString(int exclude) const {
++HWY_DLLEXPORT std::string Stats::ToString(int exclude) const {
+   if (Count() == 0) return std::string("(none)");
+ 
+   char buf[300];
+diff --git a/hwy/stats.h b/hwy/stats.h
+index 041f3d2d..8a71f51c 100644
+--- a/hwy/stats.h
++++ b/hwy/stats.h
+@@ -143,7 +143,7 @@ class Stats {
+     m2_ += d2n1_div_n;
+   }
+ 
+-  void Assimilate(const Stats& other);
++  HWY_DLLEXPORT void Assimilate(const Stats& other);
+ 
+   int64_t Count() const { return n_; }
+ 
+@@ -208,7 +208,7 @@ class Stats {
+     kNoSkewKurt = 8,
+     kNoGeomean = 16
+   };
+-  std::string ToString(int exclude = 0) const;
++  HWY_DLLEXPORT std::string ToString(int exclude = 0) const;
+ 
+   void Reset() {
+     n_ = 0;
+-- 
+2.55.0
+

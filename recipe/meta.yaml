@@ -7,9 +7,14 @@ package:
 source:
   url: https://github.com/google/highway/archive/refs/tags/{{ version }}.tar.gz
   sha256: e72241ac9524bb653ae52ced768b508045d4438726a303f10181a38f764a453c
+  patches:
+    # https://github.com/google/highway/commit/783beecea257838c964ec7644697e8b08396596e
+    - 0001-add-missing-stats-to-cmake.patch
+    # https://github.com/google/highway/commit/11732eb2a8df6aba1e58d61320dd8bf9a658ef74
+    - 0002-add-missing-dllexport-to-stats.patch
 
 build:
-  number: 1
+  number: 2
   run_exports:
     - {{ pin_subpackage('libhwy', max_pin='x.x') }}
 
@@ -28,12 +33,14 @@ test:
     - test -f ${PREFIX}/include/hwy/highway.h              # [unix]
     - test -f ${PREFIX}/include/hwy/contrib/dot/dot-inl.h  # [unix]
     - test -f ${PREFIX}/include/hwy/tests/hwy_gtest.h      # [unix]
+    - test -f ${PREFIX}/include/hwy/stats.h                # [unix]
     - if not exist %PREFIX%\\Library\\lib\\hwy.lib exit 1                           # [win]
     - if not exist %PREFIX%\\Library\\bin\\hwy.dll exit 1                           # [win]
     - if not exist %PREFIX%\\Library\\include\\hwy\\highway.h exit 1                # [win]
     - if not exist %PREFIX%\\Library\\include\\hwy\\contrib\\dot\\dot-inl.h exit 1  # [win]
     - if not exist %PREFIX%\\Library\\include\\hwy\\tests\hwy_gtest.h  exit 1       # [win]
     - if not exist %PREFIX%\\Library\\lib\\pkgconfig\\libhwy.pc exit 1              # [win]
+    - if not exist %PREFIX%\\Library\\include\\hwy\\stats.h exit 1                  # [win]
 
 about:
   home: https://github.com/google/highway

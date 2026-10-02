@@ -1,0 +1,33 @@
+From 783beecea257838c964ec7644697e8b08396596e Mon Sep 17 00:00:00 2001
+From: Jan Wassenberg <janwas@google.com>
+Date: Tue, 26 May 2026 09:36:42 -0700
+Subject: [PATCH] add missing stats.* to CMake, thanks @plawanrath
+
+PiperOrigin-RevId: 921516311
+---
+ CMakeLists.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 25715471..9d43bb72 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -284,6 +284,7 @@ set(HWY_SOURCES
+     hwy/print.h
+     hwy/profiler.h
+     hwy/robust_statistics.h
++    hwy/stats.h
+     hwy/targets.h
+     hwy/timer-inl.h
+     hwy/timer.h
+@@ -299,6 +300,7 @@ if (NOT HWY_CMAKE_HEADER_ONLY)
+     hwy/perf_counters.cc
+     hwy/print.cc
+     hwy/profiler.cc
++    hwy/stats.cc
+     hwy/targets.cc
+     hwy/timer.cc
+   )
+-- 
+2.55.0
+
