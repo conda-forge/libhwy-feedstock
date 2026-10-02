@@ -7,9 +7,12 @@ package:
 source:
   url: https://github.com/google/highway/archive/refs/tags/{{ version }}.tar.gz
   sha256: e72241ac9524bb653ae52ced768b508045d4438726a303f10181a38f764a453c
+  patches:
+    - 0001-add-missing-stats-to-cmake.patch
+    - 0002-add-missing-dllexport-to-stats.patch
 
 build:
-  number: 1
+  number: 2
   run_exports:
     - {{ pin_subpackage('libhwy', max_pin='x.x') }}
 
@@ -22,18 +25,32 @@ requirements:
     - ninja
 
 test:
+  files:
+    - test/
+  requires:
+    - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
+    - cmake
+    - ninja
   commands:
     - test -f ${PREFIX}/lib/libhwy${SHLIB_EXT}             # [unix]
     - test -f ${PREFIX}/lib/pkgconfig/libhwy.pc            # [unix]
     - test -f ${PREFIX}/include/hwy/highway.h              # [unix]
     - test -f ${PREFIX}/include/hwy/contrib/dot/dot-inl.h  # [unix]
     - test -f ${PREFIX}/include/hwy/tests/hwy_gtest.h      # [unix]
+    - test -f ${PREFIX}/include/hwy/stats.h                # [unix]
     - if not exist %PREFIX%\\Library\\lib\\hwy.lib exit 1                           # [win]
     - if not exist %PREFIX%\\Library\\bin\\hwy.dll exit 1                           # [win]
     - if not exist %PREFIX%\\Library\\include\\hwy\\highway.h exit 1                # [win]
     - if not exist %PREFIX%\\Library\\include\\hwy\\contrib\\dot\\dot-inl.h exit 1  # [win]
     - if not exist %PREFIX%\\Library\\include\\hwy\\tests\hwy_gtest.h  exit 1       # [win]
     - if not exist %PREFIX%\\Library\\lib\\pkgconfig\\libhwy.pc exit 1              # [win]
+    - if not exist %PREFIX%\\Library\\include\\hwy\\stats.h exit 1                  # [win]
+    - cmake -G Ninja -S test -B test_build -DCMAKE_PREFIX_PATH=${PREFIX}           # [unix]
+    - cmake -G Ninja -S test -B test_build -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX%    # [win]
+    - cmake --build test_build
+    - ./test_build/thread_pool_test                                              # [unix]
+    - test_build\\thread_pool_test.exe                                           # [win]
 
 about:
   home: https://github.com/google/highway
