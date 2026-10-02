@@ -216,6 +216,3 @@ Feedstock Maintainers
 * [@adriendelsalle](https://github.com/adriendelsalle/)
 * [@hmaarrfk](https://github.com/hmaarrfk/)
 
-
-<!-- dummy commit to enable rerendering -->
-
