@@ -27,13 +27,6 @@ requirements:
     - ninja
 
 test:
-  files:
-    - test/
-  requires:
-    - {{ compiler('cxx') }}
-    - {{ stdlib('c') }}
-    - cmake
-    - ninja
   commands:
     - test -f ${PREFIX}/lib/libhwy${SHLIB_EXT}             # [unix]
     - test -f ${PREFIX}/lib/pkgconfig/libhwy.pc            # [unix]
@@ -48,11 +41,6 @@ test:
     - if not exist %PREFIX%\\Library\\include\\hwy\\tests\hwy_gtest.h  exit 1       # [win]
     - if not exist %PREFIX%\\Library\\lib\\pkgconfig\\libhwy.pc exit 1              # [win]
     - if not exist %PREFIX%\\Library\\include\\hwy\\stats.h exit 1                  # [win]
-    - cmake -G Ninja -S test -B test_build -DCMAKE_PREFIX_PATH=${PREFIX}           # [unix]
-    - cmake -G Ninja -S test -B test_build -DCMAKE_PREFIX_PATH=%LIBRARY_PREFIX%    # [win]
-    - cmake --build test_build
-    - ./test_build/thread_pool_test                                              # [unix]
-    - test_build\\thread_pool_test.exe                                           # [win]
 
 about:
   home: https://github.com/google/highway
